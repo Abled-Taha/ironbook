@@ -105,7 +105,7 @@ cmd_build() {
     rm -rf "$OUTPUT_DIR"
 
     echo "📝 Generating latest changelog..."
-    generate_latest_changelog
+    generate_changelog "$version"
 
     build_api
     package_api "$version"
