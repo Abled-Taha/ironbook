@@ -140,20 +140,26 @@ update_web_version() {
 
 update_changelog_version() {
     local version="$1"
-    local changelog="$ROOT_DIR/.github/docs/CHANGELOG.md"
     local date="$(date +%Y-%m-%d)"
 
     echo "📦 Updating changelog to $version ($date)..."
 
-    if grep -q '^## \[Unreleased\]$' "$changelog"; then
-        sed -i \
-            "/^## \[Unreleased\]$/s//## [$version] $date/" \
-            "$changelog"
-
-        echo "✔ Changelog updated."
-    else
-        echo "⚠ No [Unreleased] section found. Skipping changelog update."
+    # Check if changelog for that version already exists
+    if compgen -G "$ROOT_DIR/docs/changelog/$version*.md" > /dev/null; then
+        echo "Changelog for $version already exists."
+        return 1
     fi
+
+    # Check if unreleased changelog exists
+    if ! compgen -G "$ROOT_DIR/docs/changelog/unreleased.md" > /dev/null; then
+        echo "No unreleased changelog exists to update."
+        return 1
+    fi
+
+    mv "$ROOT_DIR/docs/changelog/unreleased.md" "$ROOT_DIR/docs/changelog/$version"_"$date".md
+    cp "$ROOT_DIR/docs/changelog/template.md" "$ROOT_DIR/docs/changelog/unreleased.md"
+
+    echo "Updated changelog."
 }
 
 cmd_update_version() {
@@ -161,11 +167,11 @@ cmd_update_version() {
 
     require_version "$version" || return 1
 
+    update_changelog_version "$version"
     update_api_version "$version"
     update_home_version "$version"
     update_desktop_version "$version"
     update_android_version "$version"
     update_windows_installer_version "$version"
     update_web_version "$version"
-    update_changelog_version "$version"
 }

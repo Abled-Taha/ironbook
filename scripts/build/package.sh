@@ -25,8 +25,8 @@ package_api() {
     cp "$API_DIR/.env.example" \
         "$linux_tmp/.env"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$linux_tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$linux_tmp"
 
     (
         cd "$linux_tmp"
@@ -40,8 +40,8 @@ package_api() {
     cp "$API_DIR/.env.example" \
         "$windows_tmp/.env"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$windows_tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$windows_tmp"
 
     (
         cd "$windows_tmp"
@@ -77,8 +77,8 @@ package_home() {
 
     cp -a "$home_build_dir"/. "$tmp/"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$tmp"
 
     (
         cd "$tmp"
@@ -113,8 +113,8 @@ package_desktop() {
     cp -a "$DESKTOP_DIR/output/linux"/. \
         "$linux_tmp/"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$linux_tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$linux_tmp"
 
     (
         cd "$linux_tmp"
@@ -125,8 +125,8 @@ package_desktop() {
     cp -a "$DESKTOP_DIR/output/windows"/. \
         "$windows_tmp/"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$windows_tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$windows_tmp"
 
     (
         cd "$windows_tmp"
@@ -157,8 +157,8 @@ package_android() {
     cp "$ANDROID_DIR/app/build/outputs/apk/release/app-release.apk" \
         "$tmp/ironbook_android.apk"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$tmp"
 
     (
         cd "$tmp"
@@ -188,8 +188,8 @@ package_windows_installer() {
     cp "$WINDOWS_INSTALLER_OUTPUT/IronBook-Setup.exe" \
         "$tmp/ironbook_installer.exe"
 
-    cp "$OUTPUT_DIR/latest_changelog.md" \
-        "$tmp/latest_changelog.md"
+    cp "$OUTPUT_DIR/$version"*.md \
+        "$tmp"
 
     (
         cd "$tmp"
