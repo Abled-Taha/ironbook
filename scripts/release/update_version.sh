@@ -147,7 +147,6 @@ update_changelog_version() {
     # Check if changelog for that version already exists
     if compgen -G "$ROOT_DIR/docs/changelog/$version*.md" > /dev/null; then
         echo "Changelog for $version already exists."
-        return 1
     fi
 
     # Check if unreleased changelog exists
