@@ -10,5 +10,5 @@ setup_git_hooks() {
     fi
 
     echo "🔧 Installing pre-commit hooks..."
-    pre-commit install
+    mise exec -- pre-commit install
 }
