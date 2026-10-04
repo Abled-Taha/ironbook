@@ -71,9 +71,9 @@ echo ""
 setup_git_hooks
 
 echo ""
-echo "========================================"
-echo " 🎉 Setup complete!"
-echo "========================================"
+echo "========================================================================="
+echo " 🎉 Setup complete! Do \"mise trust\" and you are ready to start working."
+echo "========================================================================="
 echo ""
 echo "Don't forget to copy your Android signing keystore to:"
 echo ""
