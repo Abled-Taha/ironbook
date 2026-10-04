@@ -34,3 +34,4 @@
 - [#122]: Fixed `/apps/web` version not being updated automatically.
 - [#108]: Fixed `ironbook_db` being mapped to host port in prod.
 - [#150]: Fixed `mise trust` needing to be run again by informing the user to run it after setup.
+- [#151]: Fixed `pre-commit install` failing.
