@@ -67,9 +67,9 @@ echo ""
 setup_git_hooks
 
 echo ""
-echo "========================================"
+echo "======================================================"
 echo " 🎉 Setup complete!"
-echo "========================================"
+echo "======================================================"
 echo ""
 echo "Don't forget to copy your Android signing keystore to:"
 echo ""

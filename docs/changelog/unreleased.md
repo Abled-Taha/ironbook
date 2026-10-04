@@ -34,3 +34,4 @@
 - [#122]: Fixed `/apps/web` version not being updated automatically.
 - [#108]: Fixed `ironbook_db` being mapped to host port in prod.
 - [#135]: Fixed mise failing on systems which don't have symlinks. Now mise installs to default installation directory.
+- [#151]: Fixed `pre-commit install` failing.
