@@ -4,10 +4,6 @@
 # Environment
 # ==============================================================================
 
-export MISE_DATA_DIR="$ROOT_DIR/.mise"
-export MISE_STATE_DIR="$ROOT_DIR/.mise/state"
-export MISE_CACHE_DIR="$ROOT_DIR/.mise/cache"
-
 # mise installs to ~/.local/bin by default.
 export PATH="$HOME/.local/bin:$PATH"
 
