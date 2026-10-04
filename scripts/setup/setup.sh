@@ -4,10 +4,6 @@
 # Environment
 # ==============================================================================
 
-export MISE_DATA_DIR="$ROOT_DIR/.mise"
-export MISE_STATE_DIR="$ROOT_DIR/.mise/state"
-export MISE_CACHE_DIR="$ROOT_DIR/.mise/cache"
-
 # mise installs to ~/.local/bin by default.
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -71,9 +67,9 @@ echo ""
 setup_git_hooks
 
 echo ""
-echo "========================================================================="
-echo " 🎉 Setup complete! Do \"mise trust\" and you are ready to start working."
-echo "========================================================================="
+echo "======================================================"
+echo " 🎉 Setup complete!"
+echo "======================================================"
 echo ""
 echo "Don't forget to copy your Android signing keystore to:"
 echo ""

@@ -33,5 +33,5 @@
 - [#120]: Updated the path to the `/scripts/iron_book.sh` in `/.github/workflows/release.yml`.
 - [#122]: Fixed `/apps/web` version not being updated automatically.
 - [#108]: Fixed `ironbook_db` being mapped to host port in prod.
-- [#150]: Fixed `mise trust` needing to be run again by informing the user to run it after setup.
+- [#135]: Fixed mise failing on systems which don't have symlinks. Now mise installs to default installation directory.
 - [#151]: Fixed `pre-commit install` failing.
