@@ -35,3 +35,4 @@
 - [#108]: Fixed `ironbook_db` being mapped to host port in prod.
 - [#135]: Fixed mise failing on systems which don't have symlinks. Now mise installs to default installation directory.
 - [#151]: Fixed `pre-commit install` failing.
+- [#134]: Fixed setup failing when already running as root or `sudo` wasn't available.
