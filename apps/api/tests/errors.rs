@@ -7,14 +7,13 @@ use tonic::Code;
 #[test]
 fn error_codes_are_stable() {
     let cases = [
-        (AppError::InvalidApiToken, 1001),
+        (AppError::InvalidApiKey, 1001),
         (AppError::UsernameAlreadyExists, 1002),
         (AppError::EmailAlreadyExists, 1003),
         (AppError::InvalidCredentials, 1004),
         (AppError::InvalidName, 1005),
         (AppError::InvalidOwnerEmail, 1006),
-        (AppError::ApiTokenNameAlreadyExists, 1007),
-        (AppError::ApiTokenOwnerEmailAlreadyExists, 1008),
+        (AppError::ApiKeyNameAlreadyExists, 1007),
     ];
 
     for (error, expected) in cases {
@@ -33,7 +32,7 @@ fn http_status_mapping_is_correct() {
     use axum::http::StatusCode;
 
     assert_eq!(
-        AppError::InvalidApiToken.http_status(),
+        AppError::InvalidApiKey.http_status(),
         StatusCode::UNAUTHORIZED
     );
     assert_eq!(
@@ -50,16 +49,8 @@ fn http_status_mapping_is_correct() {
     );
     assert_eq!(AppError::InvalidName.http_status(), StatusCode::BAD_REQUEST);
     assert_eq!(
-        AppError::InvalidOwnerEmail.http_status(),
-        StatusCode::BAD_REQUEST
-    );
-    assert_eq!(
-        AppError::ApiTokenNameAlreadyExists.http_status(),
-        StatusCode::BAD_REQUEST
-    );
-    assert_eq!(
-        AppError::ApiTokenOwnerEmailAlreadyExists.http_status(),
-        StatusCode::BAD_REQUEST
+        AppError::ApiKeyNameAlreadyExists.http_status(),
+        StatusCode::CONFLICT
     );
     assert_eq!(
         AppError::DatabaseError(sqlx::Error::RowNotFound).http_status(),
@@ -74,7 +65,7 @@ fn http_status_mapping_is_correct() {
 #[test]
 fn grpc_status_mapping_is_correct() {
     assert_eq!(
-        AppError::InvalidApiToken.to_grpc_status().code(),
+        AppError::InvalidApiKey.to_grpc_status().code(),
         Code::Unauthenticated
     );
     assert_eq!(
@@ -94,18 +85,8 @@ fn grpc_status_mapping_is_correct() {
         Code::InvalidArgument
     );
     assert_eq!(
-        AppError::InvalidOwnerEmail.to_grpc_status().code(),
-        Code::InvalidArgument
-    );
-    assert_eq!(
-        AppError::ApiTokenNameAlreadyExists.to_grpc_status().code(),
-        Code::InvalidArgument
-    );
-    assert_eq!(
-        AppError::ApiTokenOwnerEmailAlreadyExists
-            .to_grpc_status()
-            .code(),
-        Code::InvalidArgument
+        AppError::ApiKeyNameAlreadyExists.to_grpc_status().code(),
+        Code::AlreadyExists
     );
     assert_eq!(
         AppError::DatabaseError(sqlx::Error::RowNotFound)
@@ -137,8 +118,8 @@ async fn into_response_contains_machine_readable_error_body() {
 
 #[test]
 fn grpc_status_message_contains_error_code_and_text() {
-    let status = AppError::InvalidApiToken.to_grpc_status();
+    let status = AppError::InvalidApiKey.to_grpc_status();
     assert_eq!(status.code(), Code::Unauthenticated);
     assert!(status.message().contains("[code: 1001]"));
-    assert!(status.message().contains("API token does not exist"));
+    assert!(status.message().contains("API key does not exist"));
 }

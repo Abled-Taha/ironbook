@@ -1,7 +1,7 @@
 use tonic::{Request, Response, Status};
 
 use crate::proto::system::{
-    ApiTokenRequest, ApiTokenResponse, GreetRequest, GreetResponse, HealthReportRequest,
+    ApiKeyRequest, ApiKeyResponse, GreetRequest, GreetResponse, HealthReportRequest,
     HealthReportResponse, system_service_server::SystemService,
 };
 
@@ -41,22 +41,22 @@ impl SystemService for SystemGrpcService {
         }))
     }
 
-    async fn generate_api_token(
+    async fn generate_api_key(
         &self,
-        request: Request<ApiTokenRequest>,
-    ) -> Result<Response<ApiTokenResponse>, Status> {
+        request: Request<ApiKeyRequest>,
+    ) -> Result<Response<ApiKeyResponse>, Status> {
         let req = request.into_inner();
-        let data = system::ApiTokenRequest {
+        let data = system::ApiKeyRequest {
             name: req.name,
             owner_email: req.owner_email,
         };
 
-        let api_token = system::generate_api_token(&self.state, req.api_token.as_deref(), data)
+        let api_key = system::generate_api_key(&self.state, req.api_key.as_deref(), data)
             .await
             .map_err(|e| e.to_grpc_status())?;
 
-        Ok(Response::new(ApiTokenResponse {
-            token: api_token.token,
+        Ok(Response::new(ApiKeyResponse {
+            token: api_key.token,
         }))
     }
 }

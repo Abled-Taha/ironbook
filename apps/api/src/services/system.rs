@@ -1,9 +1,9 @@
-use crate::db::{common, system};
+use crate::auth::api_keys;
+use crate::db::system;
 use crate::errors::AppError;
 use crate::state::AppState;
-use rand::distr::{Alphanumeric, SampleString};
 use serde::{Deserialize, Serialize};
-use tracing::{info, warn};
+use tracing::info;
 
 #[derive(Debug, Serialize)]
 pub struct GreetResponse {
@@ -17,13 +17,13 @@ pub struct HealthReportResponse {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct ApiTokenRequest {
+pub struct ApiKeyRequest {
     pub name: String,
     pub owner_email: String,
 }
 
 #[derive(Debug, Serialize)]
-pub struct ApiTokenResponse {
+pub struct ApiKeyResponse {
     pub token: String,
 }
 
@@ -44,20 +44,20 @@ pub async fn health_report(_state: &AppState) -> Result<HealthReportResponse, Ap
     })
 }
 
-pub async fn generate_api_token(
+pub async fn generate_api_key(
     state: &AppState,
-    api_token_opt: Option<&str>,
-    data: ApiTokenRequest,
-) -> Result<ApiTokenResponse, AppError> {
+    apk_key_opt: Option<&str>,
+    data: ApiKeyRequest,
+) -> Result<ApiKeyResponse, AppError> {
     info!(
         token_name = %data.name,
         owner_email = %data.owner_email,
-        "Processing API token generation request"
+        "Processing API key generation request"
     );
 
-    async fn generate_api_token_inner(
+    async fn generate_api_key_inner(
         state: &AppState,
-        data: ApiTokenRequest,
+        data: ApiKeyRequest,
     ) -> Result<String, AppError> {
         if data.name.trim().is_empty() {
             return Err(AppError::InvalidName);
@@ -65,37 +65,35 @@ pub async fn generate_api_token(
         if data.owner_email.trim().is_empty() {
             return Err(AppError::InvalidOwnerEmail);
         }
-        if system::get_api_token_by_name(state, &data.name)
+        if system::get_key_id_by_name(state, &data.name)
             .await?
             .is_some()
         {
-            return Err(AppError::ApiTokenNameAlreadyExists);
-        }
-        if system::get_api_token_by_owner_email(state, &data.owner_email)
-            .await?
-            .is_some()
-        {
-            return Err(AppError::ApiTokenOwnerEmailAlreadyExists);
+            return Err(AppError::ApiKeyNameAlreadyExists);
         }
 
-        let token = Alphanumeric.sample_string(&mut rand::rng(), 32);
-        system::store_api_token(state, data, &token).await?;
+        let generated = api_keys::generate();
 
-        info!("Successfully generated and stored new API token");
-        Ok(token)
+        system::store_api_key(state, data, &generated.key_id, &generated.secret_hash).await?;
+
+        info!(
+            key_id = %generated.key_id,
+            "Successfully generated and stored new API key"
+        );
+
+        Ok(generated.token)
     }
 
     if system::is_first_start(state).await? {
-        info!("Initial setup detected (first start): bypassing API token verification");
-        let token = generate_api_token_inner(state, data).await?;
-        Ok(ApiTokenResponse { token })
+        info!("Initial setup detected (first start): bypassing API key verification");
+        let token = generate_api_key_inner(state, data).await?;
+        Ok(ApiKeyResponse { token })
     } else {
-        let api_token = api_token_opt.unwrap_or_default();
-        if !common::verify_api_token(state, api_token).await? {
-            warn!("Unauthorized API token generation attempt");
-            return Err(AppError::InvalidApiToken);
-        }
-        let token = generate_api_token_inner(state, data).await?;
-        Ok(ApiTokenResponse { token })
+        let apk_key = apk_key_opt.unwrap_or_default();
+
+        api_keys::authenticate(state, apk_key).await?;
+
+        let token = generate_api_key_inner(state, data).await?;
+        Ok(ApiKeyResponse { token })
     }
 }

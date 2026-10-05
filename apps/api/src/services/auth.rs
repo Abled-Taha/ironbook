@@ -1,3 +1,4 @@
+use crate::auth::api_keys;
 use crate::db::{auth, common};
 use crate::errors::AppError;
 use crate::state::AppState;
@@ -30,15 +31,12 @@ pub struct LoginRequest {
 
 pub async fn register(
     state: &AppState,
-    api_token: &str,
+    api_key: &str,
     data: RegisterRequest,
 ) -> Result<AuthToken, AppError> {
     info!(username = %data.username, email = %data.email, "Processing user registration request");
 
-    if !common::verify_api_token(state, api_token).await? {
-        warn!("Invalid API token provided during registration");
-        return Err(AppError::InvalidApiToken);
-    }
+    api_keys::authenticate(state, api_key).await?;
 
     if common::get_user_id_by_username(state, &data.username)
         .await?
@@ -81,15 +79,12 @@ pub async fn register(
 
 pub async fn login(
     state: &AppState,
-    api_token: &str,
+    api_key: &str,
     data: LoginRequest,
 ) -> Result<AuthToken, AppError> {
     info!(email = %data.email, "Processing user login request");
 
-    if !common::verify_api_token(state, api_token).await? {
-        warn!(email = %data.email, "Invalid API token provided during login attempt");
-        return Err(AppError::InvalidApiToken);
-    }
+    api_keys::authenticate(state, api_key).await?;
 
     let user_id_opt = common::get_user_id_by_email(state, &data.email).await?;
     let user_id = match user_id_opt {

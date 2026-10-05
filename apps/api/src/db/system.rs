@@ -17,13 +17,10 @@ pub async fn is_first_start(state: &AppState) -> Result<bool, AppError> {
     Ok(count.unwrap_or(0) == 0)
 }
 
-pub async fn get_api_token_by_name(
-    state: &AppState,
-    name: &str,
-) -> Result<Option<String>, AppError> {
-    let api_token = sqlx::query_scalar!(
+pub async fn get_key_id_by_name(state: &AppState, name: &str) -> Result<Option<String>, AppError> {
+    let key_id = sqlx::query_scalar!(
         r#"
-        SELECT api_token
+        SELECT key_id
         FROM clients
         WHERE name = $1
         "#,
@@ -32,16 +29,16 @@ pub async fn get_api_token_by_name(
     .fetch_optional(&state.db)
     .await?;
 
-    Ok(api_token)
+    Ok(key_id)
 }
 
-pub async fn get_api_token_by_owner_email(
+pub async fn get_key_id_by_owner_email(
     state: &AppState,
     owner_email: &str,
 ) -> Result<Option<String>, AppError> {
-    let api_token = sqlx::query_scalar!(
+    let key_id = sqlx::query_scalar!(
         r#"
-        SELECT api_token
+        SELECT key_id
         FROM clients
         WHERE owner_email = $1
         "#,
@@ -50,30 +47,35 @@ pub async fn get_api_token_by_owner_email(
     .fetch_optional(&state.db)
     .await?;
 
-    Ok(api_token)
+    Ok(key_id)
 }
 
-pub async fn store_api_token(
+pub async fn store_api_key(
     state: &AppState,
-    data: system::ApiTokenRequest,
-    api_token: &String,
+    data: system::ApiKeyRequest,
+    key_id: &str,
+    secret_hash: &str,
 ) -> Result<bool, AppError> {
     let mut tx: Transaction<'_, Postgres> = state.db.begin().await?;
 
-    // Insert the client into the database
     sqlx::query!(
         r#"
-        INSERT INTO clients (name, owner_email, api_token)
-        VALUES ($1, $2, $3)
+        INSERT INTO clients (
+            name,
+            owner_email,
+            key_id,
+            secret_hash
+        )
+        VALUES ($1, $2, $3, $4)
         "#,
         data.name,
         data.owner_email,
-        api_token,
+        key_id,
+        secret_hash,
     )
     .execute(&mut *tx)
     .await?;
 
-    // Commit the transaction to finalize the insertions
     tx.commit().await?;
 
     Ok(true)

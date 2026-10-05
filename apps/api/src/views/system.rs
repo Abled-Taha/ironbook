@@ -24,10 +24,10 @@ pub async fn health_report(State(state): State<AppState>) -> Result<impl IntoRes
     Ok((StatusCode::OK, Json(resp)))
 }
 
-pub async fn generate_api_token(
+pub async fn generate_api_key(
     State(state): State<AppState>,
     headers: HeaderMap,
-    Json(payload): Json<system::ApiTokenRequest>,
+    Json(payload): Json<system::ApiKeyRequest>,
 ) -> Result<impl IntoResponse, AppError> {
     info!(
         path = "/generate-token",
@@ -36,10 +36,10 @@ pub async fn generate_api_token(
         "Received HTTP request"
     );
 
-    let api_token_opt = headers
+    let api_key_opt = headers
         .get("Authorization")
         .and_then(|value| value.to_str().ok());
 
-    let resp = system::generate_api_token(&state, api_token_opt, payload).await?;
+    let resp = system::generate_api_key(&state, api_key_opt, payload).await?;
     Ok((StatusCode::OK, Json(resp)))
 }

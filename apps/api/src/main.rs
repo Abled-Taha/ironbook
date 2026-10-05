@@ -61,10 +61,7 @@ pub async fn main() -> Result<()> {
     let app = Router::new()
         .route("/", get(views::system::greet))
         .route("/health", get(views::system::health_report))
-        .route(
-            "/generate_api_token",
-            post(views::system::generate_api_token),
-        )
+        .route("/generate_api_key", post(views::system::generate_api_key))
         .route("/users/{id}", get(views::users::get_user_by_id))
         .route("/users/search", get(views::users::search))
         .route("/auth/register", post(views::auth::register))

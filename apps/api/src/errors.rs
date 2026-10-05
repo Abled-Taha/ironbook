@@ -9,8 +9,8 @@ use tonic::Status;
 
 #[derive(Error, Debug)]
 pub enum AppError {
-    #[error("API token does not exist")]
-    InvalidApiToken,
+    #[error("API key does not exist")]
+    InvalidApiKey,
 
     #[error("Username already exists")]
     UsernameAlreadyExists,
@@ -27,11 +27,8 @@ pub enum AppError {
     #[error("Invalid owner email")]
     InvalidOwnerEmail,
 
-    #[error("API token name already exists")]
-    ApiTokenNameAlreadyExists,
-
-    #[error("API token owner email already exists")]
-    ApiTokenOwnerEmailAlreadyExists,
+    #[error("API key name already exists")]
+    ApiKeyNameAlreadyExists,
 
     #[error("Database error: {0}")]
     DatabaseError(#[from] sqlx::Error),
@@ -43,14 +40,13 @@ pub enum AppError {
 impl AppError {
     pub fn code(&self) -> u32 {
         match self {
-            AppError::InvalidApiToken => 1001,
+            AppError::InvalidApiKey => 1001,
             AppError::UsernameAlreadyExists => 1002,
             AppError::EmailAlreadyExists => 1003,
             AppError::InvalidCredentials => 1004,
             AppError::InvalidName => 1005,
             AppError::InvalidOwnerEmail => 1006,
-            AppError::ApiTokenNameAlreadyExists => 1007,
-            AppError::ApiTokenOwnerEmailAlreadyExists => 1008,
+            AppError::ApiKeyNameAlreadyExists => 1007,
             AppError::DatabaseError(_) => 5000,
             AppError::Internal(_) => 5001,
         }
@@ -58,16 +54,18 @@ impl AppError {
 
     pub fn to_grpc_status(&self) -> Status {
         let grpc_code = match self {
-            AppError::InvalidApiToken | AppError::InvalidCredentials => {
-                tonic::Code::Unauthenticated
-            }
-            AppError::UsernameAlreadyExists | AppError::EmailAlreadyExists => {
-                tonic::Code::AlreadyExists
-            }
-            AppError::InvalidName
-            | AppError::InvalidOwnerEmail
-            | AppError::ApiTokenNameAlreadyExists
-            | AppError::ApiTokenOwnerEmailAlreadyExists => tonic::Code::InvalidArgument,
+            // Authentication failures
+            AppError::InvalidApiKey | AppError::InvalidCredentials => tonic::Code::Unauthenticated,
+
+            // Resource already exists
+            AppError::UsernameAlreadyExists
+            | AppError::EmailAlreadyExists
+            | AppError::ApiKeyNameAlreadyExists => tonic::Code::AlreadyExists,
+
+            // Invalid client-supplied input
+            AppError::InvalidName | AppError::InvalidOwnerEmail => tonic::Code::InvalidArgument,
+
+            // Server-side failures
             AppError::DatabaseError(_) | AppError::Internal(_) => tonic::Code::Internal,
         };
 
@@ -76,12 +74,18 @@ impl AppError {
 
     pub fn http_status(&self) -> StatusCode {
         match self {
-            AppError::InvalidApiToken | AppError::InvalidCredentials => StatusCode::UNAUTHORIZED,
-            AppError::UsernameAlreadyExists | AppError::EmailAlreadyExists => StatusCode::CONFLICT,
-            AppError::InvalidName
-            | AppError::InvalidOwnerEmail
-            | AppError::ApiTokenNameAlreadyExists
-            | AppError::ApiTokenOwnerEmailAlreadyExists => StatusCode::BAD_REQUEST,
+            // Authentication failures
+            AppError::InvalidApiKey | AppError::InvalidCredentials => StatusCode::UNAUTHORIZED,
+
+            // Resource already exists
+            AppError::UsernameAlreadyExists
+            | AppError::EmailAlreadyExists
+            | AppError::ApiKeyNameAlreadyExists => StatusCode::CONFLICT,
+
+            // Invalid client-supplied input
+            AppError::InvalidName | AppError::InvalidOwnerEmail => StatusCode::BAD_REQUEST,
+
+            // Server-side failures
             AppError::DatabaseError(_) | AppError::Internal(_) => StatusCode::INTERNAL_SERVER_ERROR,
         }
     }
@@ -91,9 +95,10 @@ impl IntoResponse for AppError {
     fn into_response(self) -> Response {
         let status = self.http_status();
         let body = Json(json!({
-            "error": self.to_string(),
-            "code": self.code()
+        "error": self.to_string(),
+        "code": self.code()
         }));
+
         (status, body).into_response()
     }
 }

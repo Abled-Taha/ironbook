@@ -22,12 +22,12 @@ pub async fn register(
         "Received HTTP request"
     );
 
-    let api_token = headers
+    let apk_key = headers
         .get("Authorization")
         .and_then(|value| value.to_str().ok())
-        .ok_or(AppError::InvalidApiToken)?;
+        .ok_or(AppError::InvalidApiKey)?;
 
-    let resp = auth::register(&state, api_token, payload).await?;
+    let resp = auth::register(&state, apk_key, payload).await?;
     Ok((StatusCode::OK, Json(resp)))
 }
 
@@ -42,11 +42,11 @@ pub async fn login(
         "Received HTTP request"
     );
 
-    let api_token = headers
+    let apk_key = headers
         .get("Authorization")
         .and_then(|value| value.to_str().ok())
-        .ok_or(AppError::InvalidApiToken)?;
+        .ok_or(AppError::InvalidApiKey)?;
 
-    let resp = auth::login(&state, api_token, payload).await?;
+    let resp = auth::login(&state, apk_key, payload).await?;
     Ok((StatusCode::OK, Json(resp)))
 }

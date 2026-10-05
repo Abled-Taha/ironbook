@@ -1,5 +1,6 @@
 pub static MIGRATOR: sqlx::migrate::Migrator = sqlx::migrate!("./migrations");
 
+pub mod auth;
 pub mod config;
 pub mod db;
 pub mod errors;

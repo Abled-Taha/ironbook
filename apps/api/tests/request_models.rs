@@ -35,10 +35,10 @@ fn search_filter_supports_optional_fields() {
 }
 
 #[test]
-fn api_token_request_deserializes() {
-    let request: system::ApiTokenRequest =
+fn api_key_request_deserializes() {
+    let request: system::ApiKeyRequest =
         serde_json::from_str(r#"{"name":"my-client","owner_email":"owner@example.com"}"#)
-            .expect("deserialize API token request");
+            .expect("deserialize API key request");
 
     assert_eq!(request.name, "my-client");
     assert_eq!(request.owner_email, "owner@example.com");

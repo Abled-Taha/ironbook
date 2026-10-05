@@ -23,7 +23,7 @@ async fn register_rejects_missing_authorization_header_before_database_access() 
     )
     .await;
 
-    assert!(matches!(result, Err(AppError::InvalidApiToken)));
+    assert!(matches!(result, Err(AppError::InvalidApiKey)));
 }
 
 #[tokio::test]
@@ -40,5 +40,5 @@ async fn login_rejects_missing_authorization_header_before_database_access() {
     )
     .await;
 
-    assert!(matches!(result, Err(AppError::InvalidApiToken)));
+    assert!(matches!(result, Err(AppError::InvalidApiKey)));
 }
