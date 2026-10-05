@@ -278,6 +278,16 @@ export default function Docs() {
                     </code>
                   </li>
                 </ol>
+                <p>
+                  Note: For Windows setup, install{" "}
+                  <a
+                    href="https://learn.microsoft.com/en-us/windows/wsl/install"
+                    className="font-medium text-blue-600 hover:underline"
+                  >
+                    WSL
+                  </a>{" "}
+                  then follow the instructions for Linux
+                </p>
               </div>
             </section>
 
