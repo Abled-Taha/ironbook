@@ -30,7 +30,7 @@ ensure_docker_service() {
     if cmd_exists systemctl; then
         echo "🚀 Attempting to start Docker..."
 
-        if sudo systemctl enable --now docker; then
+        if run_as_root systemctl enable --now docker; then
             if docker info >/dev/null 2>&1; then
                 echo "✔ Docker daemon started."
                 return 0
@@ -87,7 +87,7 @@ ensure_docker_user_access() {
 
     echo "👤 Adding $USER to the docker group..."
 
-    sudo usermod -aG docker "$USER"
+    run_as_root usermod -aG docker "$USER"
 
     echo ""
     echo "✔ Added $USER to the docker group."

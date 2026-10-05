@@ -30,6 +30,21 @@ source "$SCRIPTS_DIR/setup/project.sh"
 source "$SCRIPTS_DIR/setup/git-hooks.sh"
 
 # ==============================================================================
+# Helpers
+# ==============================================================================
+
+run_as_root() {
+    if [[ $EUID -eq 0 ]]; then
+        "$@"
+    elif command -v sudo >/dev/null 2>&1; then
+        sudo "$@"
+    else
+        echo "❌ Need root privileges but neither running as root nor is 'sudo' available."
+        exit 1
+    fi
+}
+
+# ==============================================================================
 # Main
 # ==============================================================================
 

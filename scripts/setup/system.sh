@@ -54,14 +54,14 @@ install_system_packages() {
             fi
 
             if [[ "${#packages[@]}" -gt 0 ]]; then
-                sudo pacman -S --needed --noconfirm "${packages[@]}"
+                run_as_root pacman -S --needed --noconfirm "${packages[@]}"
             fi
             ;;
 
         ubuntu|linuxmint|pop|debian)
             echo "📦 Installing system dependencies with apt..."
 
-            sudo apt-get update
+            run_as_root apt-get update
 
             local packages=()
 
@@ -86,7 +86,7 @@ install_system_packages() {
             fi
 
             if [[ "${#packages[@]}" -gt 0 ]]; then
-                sudo apt-get install -y "${packages[@]}"
+                run_as_root apt-get install -y "${packages[@]}"
             fi
             ;;
 
@@ -116,7 +116,7 @@ install_system_packages() {
             fi
 
             if [[ "${#packages[@]}" -gt 0 ]]; then
-                sudo dnf install -y "${packages[@]}"
+                run_as_root dnf install -y "${packages[@]}"
             fi
             ;;
 
@@ -146,7 +146,7 @@ install_system_packages() {
             fi
 
             if [[ "${#packages[@]}" -gt 0 ]]; then
-                sudo zypper install -y "${packages[@]}"
+                run_as_root zypper install -y "${packages[@]}"
             fi
             ;;
 
