@@ -49,7 +49,7 @@ jobs:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          scripts/ironbook.sh build "${GITHUB_REF_NAME#v}"
+          scripts/ironbook.sh release "${GITHUB_REF_NAME#v}"
 
       # --- PUBLISH ---
       - name: Upload All Release Assets
