@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "\n        SELECT api_token\n        FROM clients\n        WHERE owner_email = $1\n        ",
+  "query": "\n        SELECT key_id\n        FROM clients\n        WHERE owner_email = $1\n        ",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "api_token",
+        "name": "key_id",
         "type_info": "Varchar"
       }
     ],
@@ -18,5 +18,5 @@
       false
     ]
   },
-  "hash": "89bca0443590ae73c952d5135d02fe4a1c9a3612ba5249b04d8c13c4fa11acc3"
+  "hash": "b8d549f54da4dc28511454d0d71c5958d34736faefe8c6fa918ec524a3a6b36e"
 }

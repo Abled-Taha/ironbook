@@ -1,11 +1,11 @@
 {
   "db_name": "PostgreSQL",
-  "query": "\n        SELECT api_token\n        FROM clients\n        WHERE name = $1\n        ",
+  "query": "\n        SELECT key_id\n        FROM clients\n        WHERE name = $1\n        ",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
-        "name": "api_token",
+        "name": "key_id",
         "type_info": "Varchar"
       }
     ],
@@ -18,5 +18,5 @@
       false
     ]
   },
-  "hash": "b2c3f2d986c9188574ef6a2072dcae38590a1a266a0d0e119b0ed6d528fbf94d"
+  "hash": "ce9eac53ddfcb94d8862934c794148fd90c4769362ab65dcfe9688c439c282d1"
 }
