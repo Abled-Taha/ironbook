@@ -11,5 +11,5 @@ The public project website for Iron Book, built with Next.js.
 
 ## Development
 
-Complete the root setup first (Mise + Docker, `scripts/ironbook.sh setup`).
-See `mise.toml` in this directory for the `setup`, `dev` and `test` tasks.
+Complete the root setup first (`scripts/ironbook.sh setup`).
+Run `dev` and `test` tasks from the repository root, e.g. `mise run //apps/home/dev`.
