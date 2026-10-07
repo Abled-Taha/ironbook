@@ -24,4 +24,3 @@ All tasks can be run from the repository root:
 | `mise run //apps/api/db:up` / `mise run //apps/api/db:down` | Start/stop the `ironbook_db` Postgres service |
 | `mise run //apps/api/db:migrate` | Apply pending migrations |
 | `mise run //apps/api/db:reset` | Reset the database and re-apply migrations |
-

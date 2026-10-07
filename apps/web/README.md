@@ -19,4 +19,3 @@ All tasks can be run from the repository root:
 | --- | --- |
 | `mise run //apps/web/dev` | Run the Django dev server with Tailwind (port 8080) |
 | `mise run //apps/web/test` | Run the test suite (`pytest`) |
-
