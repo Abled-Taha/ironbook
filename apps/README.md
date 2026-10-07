@@ -14,12 +14,11 @@ notes.
 
 ## Getting started
 
-Complete the root [README](../README.md) setup first (Mise + Docker, then
-`scripts/ironbook.sh setup`). Each app additionally defines `setup`, `dev` and
-`test` tasks in its own `mise.toml` — run them from inside the app directory:
+Complete the root [README](../README.md) setup first
+(`scripts/ironbook.sh setup`). Each app defines `dev` and `test` tasks —
+run them from the repository root, no need to `cd` into the app directory:
 
 ```sh
-cd apps/<app>
-mise run setup
-mise run dev
+mise run //apps/api/test
+mise run //apps/web/dev
 ```
