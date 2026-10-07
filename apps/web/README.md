@@ -12,13 +12,11 @@ Web client for Project Iron Book, built with Python and Django.
 
 ## Development
 
-Complete the root setup first (Mise + Docker, `scripts/ironbook.sh setup`).
-All tasks are defined in `mise.toml`:
+Complete the root setup first (`scripts/ironbook.sh setup`).
+All tasks can be run from the repository root:
 
 | Task | Description |
 | --- | --- |
-| `mise run setup` | Sync dependencies and collect static files |
-| `mise run dev` | Run the Django dev server with Tailwind (port 8080) |
-| `mise run test` | Run the test suite (`pytest`) |
+| `mise run //apps/web/dev` | Run the Django dev server with Tailwind (port 8080) |
+| `mise run //apps/web/test` | Run the test suite (`pytest`) |
 
-Copy `.env.example` to `.env` and adjust the values before running.
