@@ -54,8 +54,8 @@ export default function SecurityPractices() {
                   </li>
 
                   <li>
-                    <strong className="font-semibold">Dependencies:</strong>{" "}
-                    the Rust API pins dependencies in{" "}
+                    <strong className="font-semibold">Dependencies:</strong> the
+                    Rust API pins dependencies in{" "}
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       Cargo.lock
                     </code>
@@ -63,9 +63,7 @@ export default function SecurityPractices() {
                   </li>
 
                   <li>
-                    <strong className="font-semibold">
-                      Defense in depth:
-                    </strong>{" "}
+                    <strong className="font-semibold">Defense in depth:</strong>{" "}
                     hashing at rest (Argon2, SHA-256), verification in the
                     service layer, revocation in the data model, and logging on
                     top — no single layer is trusted alone.

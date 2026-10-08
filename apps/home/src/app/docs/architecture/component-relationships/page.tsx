@@ -31,7 +31,7 @@ export default function ComponentRelationships() {
             <section className="space-y-6">
               <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                 <pre className="overflow-x-auto font-mono text-xs leading-5 text-zinc-700 dark:text-zinc-300">
-{`                        ┌─────────────────┐
+                  {`                        ┌─────────────────┐
                         │  apps/home      │  Next.js project website / docs
                         │  (public site)  │
                         └─────────────────┘
@@ -87,8 +87,8 @@ export default function ComponentRelationships() {
                     desktop
                   </a>{" "}
                   (C# with Avalonia) — all go through the API. No client holds
-                  database credentials; the API is the only component that
-                  talks to the database.
+                  database credentials; the API is the only component that talks
+                  to the database.
                 </p>
               </div>
             </section>

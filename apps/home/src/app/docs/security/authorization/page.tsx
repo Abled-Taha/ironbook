@@ -49,16 +49,14 @@ export default function Authorization() {
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       user_id
                     </code>
-                    ; there is no ambient authority — every request must
-                    present a valid session token.
+                    ; there is no ambient authority — every request must present
+                    a valid session token.
                   </li>
 
                   <li>
                     Privileged operations (e.g. registration) additionally
                     require a valid{" "}
-                    <strong className="font-semibold">
-                      client API token
-                    </strong>{" "}
+                    <strong className="font-semibold">client API token</strong>{" "}
                     (see{" "}
                     <a
                       href="/docs/security/api-tokens"
@@ -66,8 +64,8 @@ export default function Authorization() {
                     >
                       API tokens
                     </a>
-                    ), so arbitrary third parties cannot create accounts even
-                    if they reach the endpoint.
+                    ), so arbitrary third parties cannot create accounts even if
+                    they reach the endpoint.
                   </li>
                 </ul>
               </div>

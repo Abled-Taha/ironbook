@@ -88,9 +88,9 @@ export default function ThreatModel() {
               <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                 <p className="leading-8 text-zinc-700 dark:text-zinc-300">
                   Transport security (TLS) is expected to be terminated by the
-                  deployment environment; the API itself does not implement
-                  rate limiting yet, so brute-force protection currently
-                  relies on monitoring the auth logs.
+                  deployment environment; the API itself does not implement rate
+                  limiting yet, so brute-force protection currently relies on
+                  monitoring the auth logs.
                 </p>
               </div>
             </section>

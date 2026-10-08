@@ -51,9 +51,9 @@ export default function ApiTokens() {
                   <li>
                     Treat API tokens like passwords: store them in the
                     deployment environment, never in source control, and rotate
-                    them if they are ever exposed. (Token lifecycle
-                    management — rotation endpoints, scopes, and audit of token
-                    use — is tracked as future work in the issue tracker.)
+                    them if they are ever exposed. (Token lifecycle management —
+                    rotation endpoints, scopes, and audit of token use — is
+                    tracked as future work in the issue tracker.)
                   </li>
                 </ul>
               </div>

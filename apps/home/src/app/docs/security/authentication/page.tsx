@@ -28,7 +28,8 @@ export default function Authentication() {
                 <ul className="list-disc space-y-4 pl-6 leading-7 text-zinc-700 dark:text-zinc-300">
                   <li>
                     <strong className="font-semibold">Passwords</strong> are
-                    hashed with <strong className="font-semibold">Argon2</strong>{" "}
+                    hashed with{" "}
+                    <strong className="font-semibold">Argon2</strong>{" "}
                     (memory-hard, salted per user) in{" "}
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       apps/api/src/services/auth.rs

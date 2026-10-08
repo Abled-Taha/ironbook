@@ -121,9 +121,7 @@ export default function DatabaseArchitecture() {
 
               <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
                 <ul className="list-disc space-y-4 pl-6 leading-7 text-zinc-700 dark:text-zinc-300">
-                  <li>
-                    Passwords are never stored; only Argon2 hashes.
-                  </li>
+                  <li>Passwords are never stored; only Argon2 hashes.</li>
 
                   <li>
                     Session tokens are never stored in cleartext; only SHA-256
@@ -150,13 +148,13 @@ export default function DatabaseArchitecture() {
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       .sqlx/
                     </code>
-                    ) keeps compile-time query checking working without a
-                    live database.
+                    ) keeps compile-time query checking working without a live
+                    database.
                   </li>
 
                   <li>
-                    Database services are provisioned through the Docker
-                    Compose definitions in{" "}
+                    Database services are provisioned through the Docker Compose
+                    definitions in{" "}
                     <a
                       href="https://github.com/ironbook-labs/ironbook/blob/main/infra/docker/compose"
                       className="font-medium text-blue-600 hover:underline"

@@ -22,8 +22,8 @@ export default function ArchitectureDocs() {
               </div>
 
               <p className="max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-300">
-                This section documents the architecture of Project Iron Book —
-                a <strong className="font-semibold">polyglot monorepo</strong>{" "}
+                This section documents the architecture of Project Iron Book — a{" "}
+                <strong className="font-semibold">polyglot monorepo</strong>{" "}
                 (&ldquo;A Digital Financial Ledger&rdquo;) made of 7 integrated
                 parts, each in its own tech stack, all managed through one
                 toolchain. Start with the{" "}
@@ -85,8 +85,8 @@ export default function ArchitectureDocs() {
                   <h3 className="mb-2 font-semibold">Data flow</h3>
 
                   <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                    Setup flow, build/release flow, environment handling, and
-                    a typical runtime request.
+                    Setup flow, build/release flow, environment handling, and a
+                    typical runtime request.
                   </p>
                 </a>
 
@@ -94,9 +94,7 @@ export default function ArchitectureDocs() {
                   href="/docs/architecture/major-design-decisions"
                   className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
                 >
-                  <h3 className="mb-2 font-semibold">
-                    Major design decisions
-                  </h3>
+                  <h3 className="mb-2 font-semibold">Major design decisions</h3>
 
                   <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                     Why the project is shaped this way.
@@ -107,9 +105,7 @@ export default function ArchitectureDocs() {
                   href="/docs/architecture/database-architecture"
                   className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-zinc-600"
                 >
-                  <h3 className="mb-2 font-semibold">
-                    Database architecture
-                  </h3>
+                  <h3 className="mb-2 font-semibold">Database architecture</h3>
 
                   <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                     PostgreSQL as the single source of truth: migrations and

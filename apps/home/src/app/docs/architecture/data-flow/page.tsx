@@ -22,9 +22,9 @@ export default function DataFlow() {
               </div>
 
               <p className="max-w-3xl text-lg leading-8 text-zinc-700 dark:text-zinc-300">
-                How developers get set up, how builds and releases move
-                through the repo, how configuration reaches every part of the
-                system, and what a typical request looks like at runtime.
+                How developers get set up, how builds and releases move through
+                the repo, how configuration reaches every part of the system,
+                and what a typical request looks like at runtime.
               </p>
             </section>
 
@@ -263,14 +263,14 @@ export default function DataFlow() {
                   Android / desktop) →{" "}
                   <strong className="font-semibold">API</strong> (REST via Axum
                   or gRPC via tonic) →{" "}
-                  <strong className="font-semibold">PostgreSQL</strong>. The
-                  API validates input, verifies credentials, applies business
-                  logic, and persists through{" "}
+                  <strong className="font-semibold">PostgreSQL</strong>. The API
+                  validates input, verifies credentials, applies business logic,
+                  and persists through{" "}
                   <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                     sqlx
                   </code>
-                  ; a central error module maps failures to consistent API
-                  error responses. See{" "}
+                  ; a central error module maps failures to consistent API error
+                  responses. See{" "}
                   <a
                     href="/docs/architecture/client-api-architecture"
                     className="font-medium text-blue-600 hover:underline"

@@ -48,8 +48,8 @@ export default function SecretsManagement() {
                     </code>{" "}
                     documents variable{" "}
                     <strong className="font-semibold">names only</strong>; it
-                    contains no real credentials and must never be turned into
-                    a real{" "}
+                    contains no real credentials and must never be turned into a
+                    real{" "}
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       .env
                     </code>{" "}

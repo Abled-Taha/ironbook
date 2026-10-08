@@ -89,8 +89,8 @@ export default function MajorDesignDecisions() {
                         contracts/proto/
                       </code>
                     </a>{" "}
-                    is compiled into the server and shared with clients, so
-                    the API surface is defined once and REST and gRPC stay
+                    is compiled into the server and shared with clients, so the
+                    API surface is defined once and REST and gRPC stay
                     consistent.
                   </li>
 
@@ -124,8 +124,8 @@ export default function MajorDesignDecisions() {
                       Stateful sessions, hashed tokens.
                     </strong>{" "}
                     Sessions live in the database with hashes, expiry, and a
-                    revocation flag, trading a small lookup cost for
-                    server-side control over every issued token. See the{" "}
+                    revocation flag, trading a small lookup cost for server-side
+                    control over every issued token. See the{" "}
                     <a
                       href="https://github.com/ironbook-labs/ironbook/blob/main/docs/SECURITY.md"
                       className="font-medium text-blue-600 hover:underline"

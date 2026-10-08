@@ -39,8 +39,8 @@ export default function AuditLogging() {
                   </li>
 
                   <li>
-                    Security-relevant events are logged explicitly:
-                    registration attempts (
+                    Security-relevant events are logged explicitly: registration
+                    attempts (
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       info!
                     </code>{" "}

@@ -187,8 +187,8 @@ export default function SystemArchitecture() {
                       apps/api/mise.toml
                     </code>
                   </a>
-                  ). Any task for any sub-project can be run from the
-                  repository root, e.g.{" "}
+                  ). Any task for any sub-project can be run from the repository
+                  root, e.g.{" "}
                   <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                     mise run //apps/api/test
                   </code>{" "}
@@ -264,7 +264,9 @@ export default function SystemArchitecture() {
                             build
                           </code>
                         </td>
-                        <td className="px-4 py-3">Build the project artifacts</td>
+                        <td className="px-4 py-3">
+                          Build the project artifacts
+                        </td>
                       </tr>
 
                       <tr className="border-b border-zinc-100 dark:border-zinc-800">
@@ -330,18 +332,12 @@ export default function SystemArchitecture() {
                           "scripts/build/",
                           "Build, packaging, changelog generation",
                         ],
-                        [
-                          "scripts/release/",
-                          "Versioning, signing, publishing",
-                        ],
+                        ["scripts/release/", "Versioning, signing, publishing"],
                         [
                           "scripts/install/",
                           "Installer scripts used by the curl-based install in the root README",
                         ],
-                        [
-                          "scripts/tools/",
-                          "get_tree, get_codebase utilities",
-                        ],
+                        ["scripts/tools/", "get_tree, get_codebase utilities"],
                       ].map(([dir, purpose]) => (
                         <tr
                           key={dir}
@@ -366,14 +362,12 @@ export default function SystemArchitecture() {
               </div>
 
               <div className="space-y-4 rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-                <h3 className="text-2xl font-semibold">
-                  Environment handling
-                </h3>
+                <h3 className="text-2xl font-semibold">Environment handling</h3>
 
                 <p className="leading-8 text-zinc-700 dark:text-zinc-300">
                   Environment variables are the single mechanism for
-                  configuration across all parts. Variable names are
-                  documented in{" "}
+                  configuration across all parts. Variable names are documented
+                  in{" "}
                   <a
                     href="https://github.com/ironbook-labs/ironbook/blob/main/.env.example"
                     className="font-medium text-blue-600 hover:underline"
@@ -439,8 +433,7 @@ export default function SystemArchitecture() {
                     <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
                       system.proto
                     </code>
-                    ) and are the source of truth for server and clients
-                    alike.
+                    ) and are the source of truth for server and clients alike.
                   </li>
 
                   <li>
