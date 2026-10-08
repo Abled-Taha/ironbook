@@ -83,6 +83,20 @@ export default function Docs() {
             >
               Self Deployment
             </a>
+
+            <a
+              href="/docs/architecture"
+              className="block text-zinc-600 transition hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            >
+              Architecture docs
+            </a>
+
+            <a
+              href="/docs/security"
+              className="block text-zinc-600 transition hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            >
+              Security docs
+            </a>
           </nav>
         </aside>
 
