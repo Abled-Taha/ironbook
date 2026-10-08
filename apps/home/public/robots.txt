@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://iron-book-self.vercel.app
+
+# Sitemaps
+Sitemap: https://iron-book-self.vercel.app/sitemap.xml
