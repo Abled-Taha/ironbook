@@ -2,6 +2,7 @@
 - [#81]: Added `/docs/CODEOWNDERS`.
 - [#77]: Added structured versioned files for changelog.
 - [#133]: Added `Windows` setup section in relative documentation.
+- [#104]: Added `README` files in all relative directores.
 
 ### Removed
 - [#76]: Removed `/assets` directory.
