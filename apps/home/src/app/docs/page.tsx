@@ -83,6 +83,20 @@ export default function Docs() {
             >
               Self Deployment
             </a>
+
+            <a
+              href="/docs/architecture"
+              className="block text-zinc-600 transition hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            >
+              Architecture docs
+            </a>
+
+            <a
+              href="/docs/security"
+              className="block text-zinc-600 transition hover:text-black dark:text-zinc-400 dark:hover:text-white"
+            >
+              Security docs
+            </a>
           </nav>
         </aside>
 
@@ -278,6 +292,16 @@ export default function Docs() {
                     </code>
                   </li>
                 </ol>
+                <p>
+                  Note: For Windows setup, install{" "}
+                  <a
+                    href="https://learn.microsoft.com/en-us/windows/wsl/install"
+                    className="font-medium text-blue-600 hover:underline"
+                  >
+                    WSL
+                  </a>{" "}
+                  then follow the instructions for Linux
+                </p>
               </div>
             </section>
 
