@@ -24,4 +24,4 @@ jobs:
           scripts/ironbook.sh setup
 
       - name: Run pre-commit checks
-        run: mise exec -- pre-commit run --all-files
+        run: mise exec -- pre-commit run --hook-stage pre-push --all-files

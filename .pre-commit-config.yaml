@@ -1,3 +1,5 @@
+default_install_hook_types: [pre-commit, pre-push]
+
 repos:
   # Secret Scanning (Prevent hardcoded credentials/keys)
   - repo: https://github.com/gitleaks/gitleaks
@@ -24,6 +26,7 @@ repos:
         language: system
         types: [rust]
         pass_filenames: false
+        stages: [pre-push]
 
       - id: cargo-fmt
         name: cargo fmt
@@ -45,6 +48,7 @@ repos:
         language: system
         types: [rust]
         pass_filenames: false
+        stages: [pre-push]
 
   # Local NextJS checks
   - repo: local
@@ -76,6 +80,7 @@ repos:
         language: system
         types_or: [javascript, jsx, ts, tsx]
         pass_filenames: false
+        stages: [pre-push]
 
   # Local Django checks
   - repo: local
@@ -101,6 +106,7 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+        stages: [pre-push]
 
         # 3. Static Type Check
       - id: django-type-check
@@ -117,6 +123,7 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+        stages: [pre-push]
 
   # Local C# / .NET Avalonia Desktop checks
   - repo: local
@@ -134,6 +141,7 @@ repos:
         language: system
         types_or: [c#]
         pass_filenames: false
+        stages: [pre-push]
 
   # Local Kotlin / Android checks
   - repo: local
@@ -158,3 +166,4 @@ repos:
         language: system
         types_or: [kotlin, xml]
         pass_filenames: false
+        stages: [pre-push]

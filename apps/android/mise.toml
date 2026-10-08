@@ -2,9 +2,6 @@
 java = "openjdk-21"
 android-sdk = "1.0"
 
-[env]
-ANDROID_HOME = "{{config_root}}/.android_sdk"
-
 [tasks."setup"]
 description = "Setup Android App"
 run = [

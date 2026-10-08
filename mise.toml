@@ -11,12 +11,6 @@ config_roots = [
 [settings]
 env_file = ".env"
 
-[env]
-MISE_DATA_DIR = "{{config_root}}/.mise"
-MISE_STATE_DIR = "{{env.MISE_DATA_DIR}}/state"
-MISE_CACHE_DIR = "{{env.MISE_DATA_DIR}}/cache"
-MISE_INSTALLS_DIR = "{{env.MISE_DATA_DIR}}/installs"
-
 [hooks.enter]
 script = """
     echo 'Project IronBook'

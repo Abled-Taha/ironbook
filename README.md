@@ -32,9 +32,15 @@ This project is divided into multiple parts as following:
 
 ### Setup
 
-1. Install [Mise](https://mise.jdx.dev/) & [Docker / Docker Compose](https://docker.com/) & [mingw-w64-gcc](https://www.mingw-w64.org/)
+#### Linux
+
+1. Install [Mise](https://mise.jdx.dev/) & [Docker / Docker Compose](https://docker.com/) & [mingw-w64-gcc](https://www.mingw-w64.org/) (only needed manually if you are not on a [supported platform](docs/setup/supported_platforms.md))
 2. Clone the repo
 3. Run `scripts/ironbook.sh setup`
+
+#### Windows
+1. Install and setup [WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+2. Follow the steps of the `Linux` setup
 
 ## Users
 
